@@ -35,10 +35,6 @@ public class Samus extends Entity
 	 */
 	private static final int BOUNDS_HEIGHT = 70;
 	/**
-	 * 
-	 */
-	private static final int 
-	/**
 	 * Current state.
 	 */
 	private SamusState state;
