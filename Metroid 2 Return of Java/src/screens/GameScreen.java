@@ -106,8 +106,8 @@ public class GameScreen extends JPanel implements Runnable
 		
 		for (Entity entity : entities)
 		{
-			graphics2D.draw(entity.getBounds());
 			drawEntity(entity, graphics);
+			graphics2D.draw(entity.getBounds());
 		}
 	}
 	

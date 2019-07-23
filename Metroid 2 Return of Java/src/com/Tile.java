@@ -1,5 +1,7 @@
 package com;
 
+import java.awt.Rectangle;
+
 public abstract class Tile extends Sprite
 {
 	/**
@@ -32,7 +34,7 @@ public abstract class Tile extends Sprite
 			boolean isSolid,
 			TileImageLoader imageLoader)
 	{
-		super(x, y, TileMap.BLOCK_SIZE, TileMap.BLOCK_SIZE, scaler);
+		super(x, y, scaler);
 		this.ID = ID;
 		this.isSolid = isSolid;
 		this.isVisible = true;
@@ -47,6 +49,12 @@ public abstract class Tile extends Sprite
 	public int getID()
 	{
 		return ID;
+	}
+	
+	
+	public Rectangle getBounds()
+	{
+		return new Rectangle(x, y, TileMap.BLOCK_SIZE, TileMap.BLOCK_SIZE);
 	}
 	
 	

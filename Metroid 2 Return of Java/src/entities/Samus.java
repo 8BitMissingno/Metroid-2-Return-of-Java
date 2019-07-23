@@ -26,14 +26,14 @@ public class Samus extends Entity
 	 * Movement animation speed.
 	 */
 	private static final int DELAY = 75;
-	/**
-	 * Width of this entity's collision bounds
+	/*
+	 * Collision bounds information for when Samus is standing
 	 */
-	private static final int BOUNDS_WIDTH = 20;
-	/**
-	 * Height of this entity's collision bounds
-	 */
-	private static final int BOUNDS_HEIGHT = 70;
+	private static final int STAND_BOUNDS_WIDTH = 65;
+	private static final int STAND_BOUNDS_HEIGHT = 180;
+	private static final int STAND_BOUNDS_OFFSET_X = 25;
+	private static final int STAND_BOUNDS_OFFSET_Y = 0;
+	
 	/**
 	 * Current state.
 	 */
@@ -66,8 +66,10 @@ public class Samus extends Entity
 		super(
 				x, 
 				y, 
-				BOUNDS_WIDTH,
-				BOUNDS_HEIGHT,
+				STAND_BOUNDS_WIDTH,
+				STAND_BOUNDS_HEIGHT,
+				STAND_BOUNDS_OFFSET_X,
+				STAND_BOUNDS_OFFSET_Y,
 				scaler, 
 				ENTITY_ID_NUMBER, 
 				SamusState.getPathNamesArray(), 
@@ -89,6 +91,12 @@ public class Samus extends Entity
 		tileMap.setPosition(
 				tileMap.getXOffset() + -dx, 
 				tileMap.getYOffset() + dy);
+	}
+	
+	
+	public void collide()
+	{
+		
 	}
 	
 	

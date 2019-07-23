@@ -24,22 +24,30 @@ public abstract class Entity extends Sprite implements ActionListener
 	 * Current horizontal offset of the image representing this entity in 
 	 * relation to the x and y coordinates.
 	 */
-	protected int xImageOffset;
+	protected int imageOffsetX;
 	/**
 	 * Current vertical offset of the image representing this entity in 
 	 * relation to the x and y coordinates.
 	 */
-	protected int yImageOffset;
+	protected int imageOffsetY;
+	/**
+	 * Width of this entity's collision bounds.
+	 */
+	protected int boundsWidth;
+	/**
+	 * Height of this entity's collision bounds.
+	 */
+	protected int boundsHeight;
 	/**
 	 * Current horizontal offset of the collision bounds of this entity in 
 	 * relation to the x and y coordinates.
 	 */
-	protected int xBoundsOffset;
+	protected int boundsOffsetX;
 	/**
 	 * Current vertical offset of the collision bounds of this entity in 
 	 * relation to the x and y coordinates.
 	 */
-	protected int yBoundsOffset;
+	protected int boundsOffsetY;
 	/**
 	 * Multiplier to scale the size of the screen by.
 	 */
@@ -66,14 +74,20 @@ public abstract class Entity extends Sprite implements ActionListener
 			int y, 
 			int boundsWidth,
 			int boundsHeight,
+			int boundsOffsetX,
+			int boundsOffsetY,
 			int scaler, 
 			int eID, 
 			String[][] pathNames, 
 			int maxAnimationFrames) 
 	{
-		super(x, y, boundsWidth, boundsHeight, scaler);
+		super(x, y, scaler);
 		this.eID = eID;
 		this.maxAnimationFrames = maxAnimationFrames;
+		this.boundsWidth = boundsWidth;
+		this.boundsHeight = boundsHeight;
+		this.boundsOffsetX = boundsOffsetX;
+		this.boundsOffsetY = boundsOffsetY;
 		
 		dx = 0;
 		dy = 0;
@@ -85,8 +99,8 @@ public abstract class Entity extends Sprite implements ActionListener
 	public Rectangle getBounds()
 	{
 		return new Rectangle(
-				x + xBoundsOffset,
-				y + yBoundsOffset, 
+				x + boundsOffsetX,
+				y + boundsOffsetY, 
 				boundsWidth, 
 				boundsHeight);
 	}
@@ -126,7 +140,7 @@ public abstract class Entity extends Sprite implements ActionListener
 	 */
 	public int getXImageOffset()
 	{
-		return xImageOffset;
+		return imageOffsetX;
 	}
 	
 	
@@ -135,7 +149,7 @@ public abstract class Entity extends Sprite implements ActionListener
 	 */
 	public int getYImageOffset()
 	{
-		return yImageOffset;
+		return imageOffsetY;
 	}
 	
 	
@@ -173,7 +187,8 @@ public abstract class Entity extends Sprite implements ActionListener
 	
 	
 	/**
-	 * Sets the current painted frame of this entity. Used for an unanimated state.
+	 * Sets the current painted frame of this entity. Used for an unanimated 
+	 * state.
 	 * @param state State that this entity is in.
 	 */
 	protected void setFrame(int state)
@@ -183,15 +198,39 @@ public abstract class Entity extends Sprite implements ActionListener
 	
 	
 	/**
-	 * @param xImageOffset New horizontal offset of the image representing 
+	 * @param imageOffsetX New horizontal offset of the image representing 
 	 * this entity.
-	 * @param yImageOffset New vertical offset of the image representing this 
+	 * @param imageOffsetY New vertical offset of the image representing this 
 	 * entity.
 	 */
-	protected void setImageOffset(int xImageOffset, int yImageOffset)
+	protected void setImageOffset(int imageOffsetX, int imageOffsetY)
 	{
-		this.xImageOffset = xImageOffset;
-		this.yImageOffset = yImageOffset;
+		this.imageOffsetX = imageOffsetX;
+		this.imageOffsetY = imageOffsetY;
+	}
+	
+	
+	/**
+	 * @param boundsOffsetX New horizontal offset for this entity's collision 
+	 * bounds.
+	 * @param boundsOffsetY New vertical offset for this entity's collision 
+	 * bounds.
+	 */
+	protected void setBoundsOffset(int boundsOffsetX, int boundsOffsetY)
+	{
+		this.boundsOffsetX = boundsOffsetX;
+		this.boundsOffsetY = boundsOffsetY;
+	}
+	
+	
+	/**
+	 * @param boundsWidth New width for this entity's collision bounds.
+	 * @param boundsHeight New height for this entity's collision bounds.
+	 */
+	protected void setBoundsDimensions(int boundsWidth, int boundsHeight)
+	{
+		this.boundsWidth = boundsWidth;
+		this.boundsHeight = boundsHeight;
 	}
 	
 	

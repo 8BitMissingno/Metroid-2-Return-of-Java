@@ -1,6 +1,7 @@
 package com;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 
 public abstract class Sprite 
 {
@@ -12,14 +13,6 @@ public abstract class Sprite
 	 * Vertical coordinate of this Sprite.
 	 */
 	protected int y;
-	/**
-	 * Width of the collision bounds.
-	 */
-	protected int boundsWidth;
-	/**
-	 * Height of the collision bounds.
-	 */
-	protected int boundsHeight;
 	/**
 	 * Width of this Sprite.
 	 */
@@ -40,12 +33,13 @@ public abstract class Sprite
 	 * @param y Desired vertical coordinate.
 	 * @param pathName Path to desired Sprite image.
 	 */
-	public Sprite(int x, int y, int boundsWidth, int boundsHeight, int scaler)
+	public Sprite(
+			int x, 
+			int y,
+			int scaler)
 	{
 		this.x = x * scaler;
 		this.y = y * scaler;
-		this.boundsWidth = boundsWidth;
-		this.boundsHeight = boundsHeight;
 	}
 	
 	
@@ -88,21 +82,9 @@ public abstract class Sprite
 	
 	
 	/**
-	 * @return Width of the collision bounds.
+	 * @return Collision bounds of this sprite.
 	 */
-	public int getBoundsWidth()
-	{
-		return boundsWidth;
-	}
-	
-	
-	/**
-	 * @return Height of the collision bounds.
-	 */
-	public int getBoundsHeight()
-	{
-		return boundsHeight;
-	}
+	public abstract Rectangle getBounds();
 	
 	
 	/**
